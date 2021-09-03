@@ -16,3 +16,4 @@ To run the program you need:
 4. now you can run the program through the terminal with the command ```npm run start```  
 
 No settings, just run and go :footprints:  
+![](pomodoro.jpg)  
