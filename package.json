@@ -15,7 +15,7 @@
     "url": "https://github.com/AndrewMaksimchuk/pomodoro"
   },
   "os": [
-    "win32"
+    "win32", "linux"
   ],
   "devDependencies": {
     "electron": "^13.1.7"

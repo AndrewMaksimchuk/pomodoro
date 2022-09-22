@@ -24,6 +24,7 @@ function createWindow() {
   });
   mainWindow.setResizable(false);
   mainWindow.loadFile("index.html");
+  mainWindow.hide();
   if (isDevToolsEnable) {
     mainWindow.webContents.openDevTools();
   }
@@ -41,7 +42,7 @@ app.whenReady().then(() => {
   
     createWindow();
     setTimeout(showLayout, longTime);
-  })
+  });
 
 app.on("window-all-closed", function () {
   if (process.platform !== "darwin") app.quit();
