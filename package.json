@@ -1,12 +1,16 @@
 {
-  "name": "pomodoro_native_timer",
-  "version": "1.0.0",
+  "name": "pomodoro_timer",
+  "version": "1.1.0",
   "description": "This simple program which will give you the opportunity to take a break and freshen up a bit.",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
-  "keywords": ["Pomodoro", "Electron", "Timer"],
+  "keywords": [
+    "Pomodoro",
+    "Electron",
+    "Timer"
+  ],
   "homepage": "https://github.com/AndrewMaksimchuk/pomodoro",
   "author": "Andrew Maksimchuk",
   "license": "MIT",
@@ -15,9 +19,10 @@
     "url": "https://github.com/AndrewMaksimchuk/pomodoro"
   },
   "os": [
-    "win32", "linux"
+    "win32",
+    "linux"
   ],
-  "devDependencies": {
-    "electron": "^13.1.7"
+  "dependencies": {
+    "electron": "^20.2.0"
   }
 }
