@@ -1,4 +1,9 @@
 const { app, BrowserWindow, Menu, Tray, ipcMain } = require("electron");
+const { join } = require("node:path");
+
+const toIcons = join(__dirname, "icons");
+const iconApp = join(toIcons, "tomato.png");
+
 
 const isDevToolsEnable = false;
 let mainWindow = null;
@@ -20,7 +25,7 @@ function createWindow() {
       nodeIntegration: true,
       contextIsolation: false,
     },
-    icon: "./icons/tomato.png",
+    icon: iconApp,
   });
   mainWindow.setResizable(false);
   mainWindow.loadFile("index.html");
@@ -31,7 +36,7 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
-    tray = new Tray('./icons/tomato.png');
+    tray = new Tray(iconApp);
     const contextMenu = Menu.buildFromTemplate([
       { label: 'Take a break', type: 'normal', click: takeBreak },
       { label: 'Relaunch', type: 'normal', click: relaunchApp },
