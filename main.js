@@ -1,7 +1,9 @@
-const { app, ipcMain } = require("electron");
+const { app } = require("electron");
 const { createWindow } = require("./window");
 const { createTray } = require("./tray");
-const { longTime, breakeTime, oneMinute } = require("./time");
+const { longTime, breakeTime } = require("./time");
+
+let timerId = setTimeout(() => {})
 
 function closeApp() {
   app.quit();
@@ -19,23 +21,29 @@ app
 
     function takeBreak() {
       mainWindow.show();
-      setTimeout(() => mainWindow.hide(), oneMinute);
+      timerId = setTimeout(() => mainWindow.hide(), breakeTime);
     }
 
     function hideLayout() {
       mainWindow.hide();
-      setTimeout(showLayout, longTime);
+      timerId = setTimeout(showLayout, longTime);
     }
 
     function showLayout() {
       mainWindow.show();
-      setTimeout(hideLayout, breakeTime);
+      timerId = setTimeout(hideLayout, breakeTime);
+    }
+
+    function skip() {
+      clearTimeout(timerId);
+      hideLayout();
     }
 
     setTimeout(showLayout, longTime);
 
     createTray({
       takeBreak,
+      skip,
       relaunchApp,
       closeApp,
     });
