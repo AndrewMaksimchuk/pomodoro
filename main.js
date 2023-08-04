@@ -34,7 +34,7 @@ app
       timerId = setTimeout(hideLayout, breakeTime);
     }
 
-    function skip() {
+    function skipBreak() {
       clearTimeout(timerId);
       hideLayout();
     }
@@ -43,7 +43,7 @@ app
 
     createTray({
       takeBreak,
-      skip,
+      skipBreak,
       relaunchApp,
       closeApp,
     });
