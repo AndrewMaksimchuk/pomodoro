@@ -22,16 +22,19 @@ app
     function takeBreak() {
       mainWindow.show();
       timerId = setTimeout(() => mainWindow.hide(), breakeTime);
+      mainWindow.webContents.send('index_page', 'show');
     }
 
     function hideLayout() {
       mainWindow.hide();
       timerId = setTimeout(showLayout, longTime);
+      mainWindow.webContents.send('index_page', 'hide');
     }
 
     function showLayout() {
       mainWindow.show();
       timerId = setTimeout(hideLayout, breakeTime);
+      mainWindow.webContents.send('index_page', 'show');
     }
 
     function skipBreak() {

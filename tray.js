@@ -21,7 +21,7 @@ function createTray(todo = defaultClickAction) {
     { label: 'Skip', type: 'normal', click: todo.skipBreak },
 
     { type: 'separator' },
-    { label: "Show exercise", type: 'checkbox', checked: getShowExercises(), click: toggleShowExercises },
+    { label: "Show exercises", type: 'checkbox', checked: getShowExercises(), click: toggleShowExercises },
     { label: "Show exercise of the day", type: 'checkbox', checked: getShowExerciseOfDay(), click: toggleShowExerciseOfDay },
 
     { type: 'separator' },

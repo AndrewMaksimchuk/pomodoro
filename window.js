@@ -1,7 +1,8 @@
 const { BrowserWindow } = require("electron");
+const { join } = require('node:path');
 const { iconApp } = require("./icons");
 
-const isDevToolsEnable = false;
+const isDevToolsEnable = process.env.POMODORO_DEV;
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -14,17 +15,19 @@ function createWindow() {
     show: false,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false,
+      preload: join(__dirname, 'preload.js'),
     },
     icon: iconApp,
   });
+
   mainWindow.setResizable(false);
-  
   mainWindow.loadFile("index.html");
   mainWindow.hide();
+
   if (isDevToolsEnable) {
     mainWindow.webContents.openDevTools();
   }
+
   return mainWindow;
 }
 

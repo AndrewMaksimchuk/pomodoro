@@ -1,0 +1,7 @@
+## Environment variables
+
+### POMODORO_DEV
+Open devtools in render process - window   
+```
+POMODORO_DEV=true
+```

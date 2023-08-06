@@ -5,26 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>POMODORO</title>
-    <style>
-        body {
-            height: 100vh;
-            display: grid;
-            justify-content: center;
-            align-content: center;
-            background-color: #000;
-            overflow: hidden;
-        }
-        svg {
-            display: block;
-        }
-    </style>
+    <link rel="stylesheet" href="./style.css">
     <script src="./index.js" defer></script>
   </head>
   <body>
     <svg
+      class="show"
+      id="img-pomodoro"
+      width="512"
       height="512"
       viewBox="0 0 128 128"
-      width="512"
       xmlns="http://www.w3.org/2000/svg"
     >
       <g id="number">
@@ -101,5 +91,6 @@
         </g>
       </g>
     </svg>
+    <img class="hide" id="img-exercise" src="" alt="exercise">
   </body>
 </html>
