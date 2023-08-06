@@ -1,14 +1,35 @@
 const audioShow = new Audio(window.indexAPI.audioShow);
 const audioHide = new Audio(window.indexAPI.audioHide);
+const imgPomodoro = document.getElementById('img-pomodoro');
+const imgExercise = document.getElementById('img-exercise');
 
-window.indexAPI.playAudio((event, value) => {
-  if ('show' === value) {
+const toggleImages = () => {
+  imgPomodoro?.classList.toggle('hide');
+  imgExercise?.classList.toggle('hide');
+}
+
+let isViewExercise = false;
+let isInBreak = false;
+
+window.indexAPI.toggle((exercise, event, value) => {
+    if ('show' === value) {
+      if (isInBreak) return;
+      isInBreak = true;
+
+      if (exercise) {
+        isViewExercise = true;
+        toggleImages();
+        imgExercise?.setAttribute('src', exercise);
+      }
     return audioShow.play();
   }
 
+  if (isViewExercise) {
+    isViewExercise = false;
+    toggleImages();
+  }
+
+  isInBreak = false;
   audioShow.load();
   audioHide.play();
-})
-
-const imgPomodoro = document.getElementById('img-pomodoro');
-const imgExercise = document.getElementById('img-exercise');
+});

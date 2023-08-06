@@ -20,7 +20,7 @@ function getSettingProperty(name = '') {
   return getSettingsProperties()[name];
 }
 
-function setSettingProperty(name = '', value = false) {
+function setSettingProperty(name = '', value) {
   const settingsProperties = getSettingsProperties();
   const updatedProperties = { ...settingsProperties, [name]: value };
   setSettingsProperties(updatedProperties);
@@ -54,6 +54,9 @@ function toggleShowExerciseOfDay() {
 }
 
 module.exports = {
+  getSettingsProperties,
+  setSettingProperty,
+  getSettingProperty,
   setShowExercises,
   getShowExercises,
   toggleShowExercises,

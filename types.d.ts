@@ -1,11 +1,7 @@
-interface PlayAudio {
-  (callback: (event: IpcRendererEvent, ...args: any[]) => void): Electron.IpcRenderer.on;
-}
-
 interface IndexAPI {
   audioShow: string;
   audioHide: string;
-  playAudio: PlayAudio;
+  toggle: function;
 }
 
 interface Window {

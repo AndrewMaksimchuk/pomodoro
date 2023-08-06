@@ -26,6 +26,7 @@
     "linux"
   ],
   "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
     "electron-squirrel-startup": "^1.0.0"
   },
   "devDependencies": {

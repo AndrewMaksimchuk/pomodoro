@@ -3,7 +3,7 @@ const { createWindow } = require("./window");
 const { createTray } = require("./tray");
 const { longTime, breakeTime } = require("./time");
 
-let timerId = setTimeout(() => {})
+let timerId = setTimeout(() => { });
 
 function closeApp() {
   app.quit();
