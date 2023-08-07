@@ -17,3 +17,9 @@ declare namespace Electron {
     exposeInMainWorld<T extends keyof MapAPI>(apiKey: T, api: MapAPI[T]): void;
   }
 }
+
+interface Settings {
+  showExercises: boolean;
+  showExerciseOfDay: boolean;
+  exerciseOfDay: string | undefined;
+}

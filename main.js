@@ -2,7 +2,9 @@ const { app } = require("electron");
 const { createWindow } = require("./window");
 const { createTray } = require("./tray");
 const { longTime, breakeTime } = require("./time");
+const { createDirectories } = require("./directory");
 
+createDirectories();
 let timerId = setTimeout(() => { });
 
 function closeApp() {
