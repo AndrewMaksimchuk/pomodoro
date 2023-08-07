@@ -8,12 +8,12 @@ build:
 	npm run make
 
 run:
-	cd ./out/pomodoro_timer-linux-x64 && ./pomodoro_timer
+	cd ./out/pomodoro-linux-x64 && ./pomodoro
 
 install:
 	cd ./out/make/deb/x64 && sudo apt install ./*.deb
 
 remove:
-	sudo apt remove pomodoro-timer
+	sudo apt remove pomodoro
 
 update: remove install
