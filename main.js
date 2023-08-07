@@ -1,8 +1,9 @@
 const { app } = require("electron");
+const { longTime, breakeTime } = require("./time");
 const { createWindow } = require("./window");
 const { createTray } = require("./tray");
-const { longTime, breakeTime } = require("./time");
 const { createDirectories } = require("./directory");
+const { addExercise } = require("./exercise");
 
 createDirectories();
 let timerId = setTimeout(() => { });
@@ -51,6 +52,7 @@ app
       skipBreak,
       relaunchApp,
       closeApp,
+      addExercise,
     });
   });
 

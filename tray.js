@@ -12,15 +12,18 @@ const defaultClickAction = {
   skipBreak: () => {},
   relaunchApp: () => {},
   closeApp: () => {},
+  addExercise: () => {},
 }
 
-function createTray(todo = defaultClickAction) {
+function createTray(props = {}) {
+  const todo = {...defaultClickAction, ...props }
   const tray = new Tray(iconApp);
   const contextMenu = Menu.buildFromTemplate([
     { label: 'Take a break', type: 'normal', click: todo.takeBreak },
     { label: 'Skip', type: 'normal', click: todo.skipBreak },
 
     { type: 'separator' },
+    { label: 'Add exercise', type: 'normal', click: todo.addExercise },
     { label: "Show exercises", type: 'checkbox', checked: getShowExercises(), click: toggleShowExercises },
     { label: "Show exercise of the day", type: 'checkbox', checked: getShowExerciseOfDay(), click: toggleShowExerciseOfDay },
 
