@@ -1,4 +1,4 @@
-const { app } = require("electron");
+const { app, globalShortcut } = require("electron");
 const { longTime, breakeTime } = require("./time");
 const { createWindow } = require("./window");
 const { createTray } = require("./tray");
@@ -44,6 +44,10 @@ app
       clearTimeout(timerId);
       hideLayout();
     }
+
+    globalShortcut.register('Alt+Control+Q', () => {
+      skipBreak();
+    });
 
     setTimeout(showLayout, longTime);
 
