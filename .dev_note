@@ -1,7 +1,42 @@
 ## Environment variables
 
-### POMODORO_DEV
+#### POMODORO_DEV
 Open devtools in render process - window   
 ```
 POMODORO_DEV=true
 ```
+
+
+## Images/icons
+
+### Electron forge - build app
+
+#### Supported formats
+
+|Operation system | Format | Size |
+|--------|-------|----------------|
+|macOS   | .icns |  512x512 pixels (1024x1024 for Retina displays) |
+|Windows | .ico  |  256x256 pixels |
+|Linux   | .png  |  512x512 pixels |
+
+#### Configuring installer icons
+https://www.electronforge.io/guides/create-and-add-icons#configuring-installer-icons
+
+### Electron api - native-image
+
+#### Supported Formats
+Currently PNG and JPEG image formats are supported.  
+On Windows, you can also load ICO icons from file paths.  
+
+Small icon  
+  - 16x16 (100% DPI scale)
+  - 20x20 (125% DPI scale)
+  - 24x24 (150% DPI scale)
+  - 32x32 (200% DPI scale)  
+
+Large icon  
+  - 32x32 (100% DPI scale)
+  - 40x40 (125% DPI scale)
+  - 48x48 (150% DPI scale)
+  - 64x64 (200% DPI scale)
+  - 256x256

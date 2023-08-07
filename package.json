@@ -39,12 +39,15 @@
   },
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "icon": "icons/tomato"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "pomodoro timer"
+            "name": "pomodoro",
+            "setupIcon": "icons/tomato.ico"
           }
         },
         {
@@ -57,6 +60,7 @@
           "name": "@electron-forge/maker-deb",
           "config": {
             "options": {
+              "name": "pomodoro",
               "icon": "icons/tomato.png"
             }
           }

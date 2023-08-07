@@ -1,3 +1,5 @@
+.PHONY: start build run install remove update
+
 start:
 	npm run start
 
