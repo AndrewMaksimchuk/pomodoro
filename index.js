@@ -11,16 +11,16 @@ const toggleImages = () => {
 let isViewExercise = false;
 let isInBreak = false;
 
-window.indexAPI.toggle((exercise, event, value) => {
-    if ('show' === value) {
-      if (isInBreak) return;
-      isInBreak = true;
+window.indexAPI.toggle((event, {value, exercise}) => {
+  if ('show' === value) {
+    if (isInBreak) return;
+    isInBreak = true;
 
-      if (exercise) {
-        isViewExercise = true;
-        toggleImages();
-        imgExercise?.setAttribute('src', exercise);
-      }
+    if (exercise) {
+      isViewExercise = true;
+      toggleImages();
+      imgExercise?.setAttribute('src', exercise);
+    }
     return audioShow.play();
   }
 

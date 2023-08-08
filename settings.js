@@ -1,13 +1,13 @@
-const { app } = require("electron");
 const { writeFileSync, readFileSync, existsSync } = require("node:fs");
 const { join } = require("node:path");
+const { USER_DATA } = require("./constants");
 
 const DEFAULT_VALUES = {
   showExercises: false,
   showExerciseOfDay: false,
-  exerciseOfDay: undefined,
+  exerciseOfDay: "",
 }
-const USER_DATA = app.getPath("userData");
+
 const SETTINGS_FILE = 'pomodoro_settings.json';
 const PATH_TO_SETTINGS = join(USER_DATA, SETTINGS_FILE);
 

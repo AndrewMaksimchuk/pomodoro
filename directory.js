@@ -1,8 +1,9 @@
 const { existsSync, mkdirSync } = require('node:fs');
 const { join } = require('node:path');
+const { USER_DATA } = require("./constants");
 
-const DIR_EXERCISES = join(__dirname, 'exercises');
-const DIR_EXERCISE_DAY = join(__dirname, 'exercise_of_day');
+const DIR_EXERCISES = join(USER_DATA, 'exercises');
+const DIR_EXERCISE_DAY = join(USER_DATA, 'exercise_of_day');
 
 
 const createDirectories = () => {

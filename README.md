@@ -31,11 +31,19 @@ No settings, just run and go :footprints:
 - Show exercise of the day - if checked, show on  
                    today exercise  
 
-For get today exercise, use [darebee.com](https://www.darebee.com/)
-
-`Makefile` containe commands for developers, like  
-run and build.  
+## Keyboard
+`Ctrl+Alt+Q` - skip break  
 
 ## Environment variables
 
 POMODORO_DEV - Open devtools in render process  
+
+## Note
+
+For get today exercise, use [darebee.com](https://www.darebee.com/)
+
+`Makefile` containe commands for developers, like  
+run and build. 
+
+This application save all user data for work() in  
+user data directory.  

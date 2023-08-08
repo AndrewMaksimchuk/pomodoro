@@ -17,3 +17,5 @@ remove:
 	sudo apt remove pomodoro
 
 update: remove install
+
+update-dev: remove build install

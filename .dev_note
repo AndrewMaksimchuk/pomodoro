@@ -1,3 +1,7 @@
+## User data directory
+
+~/.config/pomodoro
+
 ## Environment variables
 
 #### POMODORO_DEV
@@ -5,7 +9,6 @@ Open devtools in render process - window
 ```
 POMODORO_DEV=true
 ```
-
 
 ## Images/icons
 
