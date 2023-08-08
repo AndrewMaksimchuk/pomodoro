@@ -1,6 +1,6 @@
 {
   "name": "pomodoro",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "description": "This simple program which will give you the opportunity to take a break and freshen up a bit.",
   "main": "main.js",
   "types": "types.d.ts",
