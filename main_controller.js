@@ -12,13 +12,13 @@ function mainController() {
 
     createDirectories();
 
-    const showData = {
-      value: 'show',
-      exercise: exercise()
-    }
     const mainWindow = createWindow();
 
     const onShow = () => {
+      const showData = {
+        value: 'show',
+        exercise: exercise(),
+      }
       mainWindow.webContents.send('index_page', showData);
     }
 
