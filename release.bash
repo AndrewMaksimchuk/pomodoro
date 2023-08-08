@@ -17,7 +17,7 @@ git push origin $tag
 
 echo "[ Create project release ]"
 
-echo "[ Enter release note ]"
+echo "[ Write release note ]"
 note_file="release_note"
 date +"%d.%m.%Y" > ./$note_file
 echo >> ./$note_file

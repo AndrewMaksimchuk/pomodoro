@@ -1,10 +1,15 @@
+## Release
+To make new release of application, run  
+`release.bash` script.  
+Set new package version and write description.  
+
 ## User data directory
 
 ~/.config/pomodoro
 
 ## Environment variables
 
-#### POMODORO_DEV
+POMODORO_DEV  
 Open devtools in render process - window   
 ```
 POMODORO_DEV=true
@@ -14,7 +19,7 @@ POMODORO_DEV=true
 
 ### Electron forge - build app
 
-#### Supported formats
+Supported formats
 
 |Operation system | Format | Size |
 |--------|-------|----------------|
@@ -22,12 +27,14 @@ POMODORO_DEV=true
 |Windows | .ico  |  256x256 pixels |
 |Linux   | .png  |  512x512 pixels |
 
-#### Configuring installer icons
+Configuring installer icons
+
 https://www.electronforge.io/guides/create-and-add-icons#configuring-installer-icons
 
 ### Electron api - native-image
 
-#### Supported Formats
+Supported Formats
+
 Currently PNG and JPEG image formats are supported.  
 On Windows, you can also load ICO icons from file paths.  
 
