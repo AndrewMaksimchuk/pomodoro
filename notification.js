@@ -6,9 +6,9 @@ function showNotification(title, body) {
     body,
   });
   notification.show();
-  notification.on('show', () => notification.close());
+  notification.on("show", () => notification.close());
 }
 
 module.exports = {
   showNotification,
-}
+};

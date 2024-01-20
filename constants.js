@@ -5,7 +5,6 @@ const LONGTIME = ONEMINUTE * 25;
 const BREAKETIME = ONEMINUTE * 5;
 let USER_DATA = undefined;
 
-
 function setOsConstants() {
   USER_DATA = app.getPath("userData");
 }
@@ -20,4 +19,4 @@ module.exports = {
   BREAKETIME,
   setOsConstants,
   getUserData,
-}
+};

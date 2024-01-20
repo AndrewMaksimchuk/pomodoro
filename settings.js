@@ -7,8 +7,8 @@ const DEFAULT_VALUES = {
   showExerciseOfDay: false,
   exerciseOfDay: "",
   soundVolume: 0.5, // Range 0..1
-}
-const SETTINGS_FILE = 'pomodoro_settings.json';
+};
+const SETTINGS_FILE = "pomodoro_settings.json";
 const PATH_TO_SETTINGS = join(getUserData(), SETTINGS_FILE);
 
 let showExercises = undefined;
@@ -17,23 +17,27 @@ let soundVolume = undefined;
 
 function createSettings() {
   if (existsSync(PATH_TO_SETTINGS)) return;
-  writeFileSync(PATH_TO_SETTINGS, JSON.stringify(DEFAULT_VALUES), { encoding: 'utf-8' });
+  writeFileSync(PATH_TO_SETTINGS, JSON.stringify(DEFAULT_VALUES), {
+    encoding: "utf-8",
+  });
 }
 
 function getSettingsProperties() {
-  const fileContent = readFileSync(PATH_TO_SETTINGS, { encoding: 'utf-8' });
+  const fileContent = readFileSync(PATH_TO_SETTINGS, { encoding: "utf-8" });
   return JSON.parse(fileContent);
 }
 
 function setSettingsProperties(updatedProperties = {}) {
-  writeFileSync(PATH_TO_SETTINGS, JSON.stringify(updatedProperties), { encoding: 'utf-8' });
+  writeFileSync(PATH_TO_SETTINGS, JSON.stringify(updatedProperties), {
+    encoding: "utf-8",
+  });
 }
 
-function getSettingProperty(name = '') {
+function getSettingProperty(name = "") {
   return getSettingsProperties()[name];
 }
 
-function setSettingProperty(name = '', value) {
+function setSettingProperty(name = "", value) {
   const settingsProperties = getSettingsProperties();
   const updatedProperties = { ...settingsProperties, [name]: value };
   setSettingsProperties(updatedProperties);
@@ -42,11 +46,11 @@ function setSettingProperty(name = '', value) {
 
 function setShowExercises(newVal = false) {
   showExercises = newVal;
-  setSettingProperty('showExercises', showExercises);
+  setSettingProperty("showExercises", showExercises);
 }
 
 function getShowExercises() {
-  return showExercises = getSettingProperty('showExercises');
+  return (showExercises = getSettingProperty("showExercises"));
 }
 
 function toggleShowExercises(updateContextMenu) {
@@ -54,16 +58,16 @@ function toggleShowExercises(updateContextMenu) {
     setShowExercises(!showExercises);
     menuItem.checked = Boolean(showExercises);
     updateContextMenu(menuItem.position, menuItem);
-  }
+  };
 }
 
 function setShowExerciseOfDay(newVal = false) {
   showExerciseOfDay = newVal;
-  setSettingProperty('showExerciseOfDay', newVal);
+  setSettingProperty("showExerciseOfDay", newVal);
 }
 
 function getShowExerciseOfDay() {
-  return showExerciseOfDay = getSettingProperty('showExerciseOfDay');
+  return (showExerciseOfDay = getSettingProperty("showExerciseOfDay"));
 }
 
 function toggleShowExerciseOfDay(updateContextMenu) {
@@ -71,16 +75,16 @@ function toggleShowExerciseOfDay(updateContextMenu) {
     setShowExerciseOfDay(!showExerciseOfDay);
     menuItem.checked = Boolean(showExerciseOfDay);
     updateContextMenu(menuItem.position, menuItem);
-  }
+  };
 }
 
 function setSoundVolume(newVal) {
   soundVolume = newVal;
-  setSettingProperty('soundVolume', soundVolume);
+  setSettingProperty("soundVolume", soundVolume);
 }
 
 function getSoundVolumn() {
-  return soundVolume = getSettingProperty('soundVolume');
+  return (soundVolume = getSettingProperty("soundVolume"));
 }
 
 function toggleSoundVolume(updateContextMenu) {
@@ -88,7 +92,7 @@ function toggleSoundVolume(updateContextMenu) {
     Boolean(soundVolume) ? setSoundVolume(0) : setSoundVolume(0.5);
     menuItem.checked = !Boolean(soundVolume);
     updateContextMenu(menuItem.position, menuItem);
-  }
+  };
 }
 
 createSettings();
@@ -105,4 +109,4 @@ module.exports = {
   toggleShowExerciseOfDay,
   getSoundVolumn,
   toggleSoundVolume,
-}
+};

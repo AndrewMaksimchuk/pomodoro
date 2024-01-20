@@ -1,5 +1,5 @@
 const { BrowserWindow } = require("electron");
-const { join } = require('node:path');
+const { join } = require("node:path");
 const { iconApp } = require("./icons");
 
 const isDevToolsEnable = process.env.POMODORO_DEV;
@@ -15,7 +15,7 @@ function createWindow() {
     show: false,
     webPreferences: {
       nodeIntegration: true,
-      preload: join(__dirname, 'preload.js'),
+      preload: join(__dirname, "preload.js"),
     },
     icon: iconApp,
   });
@@ -33,4 +33,4 @@ function createWindow() {
 
 module.exports = {
   createWindow,
-}
+};

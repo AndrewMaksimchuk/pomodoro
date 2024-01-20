@@ -6,7 +6,7 @@ interface Settings {
 }
 
 interface PageData {
-  value: 'show' | 'hide';
+  value: "show" | "hide";
   exercise: string | undefined;
   volume: number;
 }

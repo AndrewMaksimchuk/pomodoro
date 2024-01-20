@@ -2,7 +2,7 @@ const { app, globalShortcut } = require("electron");
 const { LONGTIME, BREAKETIME } = require("./constants");
 const { getSoundVolumn } = require("./settings");
 
-let timerId = setTimeout(() => { });
+let timerId = setTimeout(() => {});
 
 function mainController() {
   const { createWindow } = require("./window");
@@ -17,21 +17,21 @@ function mainController() {
 
   const onShow = () => {
     const pageData = {
-      value: 'show',
+      value: "show",
       exercise: exercise(),
       volume: getSoundVolumn(),
-    }
-    mainWindow.webContents.send('index_page', pageData);
-  }
+    };
+    mainWindow.webContents.send("index_page", pageData);
+  };
 
   const onHide = () => {
     const pageData = {
-      value: 'hide',
-      exercise: '',
+      value: "hide",
+      exercise: "",
       volume: getSoundVolumn(),
-    }
-    mainWindow.webContents.send('index_page', pageData);
-  }
+    };
+    mainWindow.webContents.send("index_page", pageData);
+  };
 
   function closeApp() {
     app.quit();
@@ -65,7 +65,7 @@ function mainController() {
     hideLayout();
   }
 
-  globalShortcut.register('Alt+Control+Q', () => {
+  globalShortcut.register("Alt+Control+Q", () => {
     skipBreak();
   });
 
@@ -82,4 +82,4 @@ function mainController() {
 
 module.exports = {
   mainController,
-}
+};
