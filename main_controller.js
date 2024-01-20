@@ -1,76 +1,83 @@
 const { app, globalShortcut } = require("electron");
 const { LONGTIME, BREAKETIME } = require("./constants");
+const { getSoundVolumn } = require("./settings");
 
 let timerId = setTimeout(() => { });
 
 function mainController() {
-    const { createWindow } = require("./window");
-    const { createTray } = require("./tray");
-    const { createDirectories } = require("./directory");
-    const { addExercise } = require("./exercise");
-    const { exercise } = require("./preload_controller");
+  const { createWindow } = require("./window");
+  const { createTray } = require("./tray");
+  const { createDirectories } = require("./directory");
+  const { addExercise } = require("./exercise");
+  const { exercise } = require("./preload_controller");
 
-    createDirectories();
+  createDirectories();
 
-    const mainWindow = createWindow();
+  const mainWindow = createWindow();
 
-    const onShow = () => {
-      const showData = {
-        value: 'show',
-        exercise: exercise(),
-      }
-      mainWindow.webContents.send('index_page', showData);
+  const onShow = () => {
+    const pageData = {
+      value: 'show',
+      exercise: exercise(),
+      volume: getSoundVolumn(),
     }
+    mainWindow.webContents.send('index_page', pageData);
+  }
 
-    const onHide = () => {
-      mainWindow.webContents.send('index_page', { value: 'hide', exercise: '' });
+  const onHide = () => {
+    const pageData = {
+      value: 'hide',
+      exercise: '',
+      volume: getSoundVolumn(),
     }
+    mainWindow.webContents.send('index_page', pageData);
+  }
 
-    function closeApp() {
-      app.quit();
-    }
-    
-    function relaunchApp() {
-      app.relaunch();
-      app.quit();
-    }
+  function closeApp() {
+    app.quit();
+  }
 
-    function takeBreak() {
-      mainWindow.show();
-      timerId = setTimeout(() => mainWindow.hide(), BREAKETIME);
-      onShow();
-    }
+  function relaunchApp() {
+    app.relaunch();
+    app.quit();
+  }
 
-    function hideLayout() {
-      mainWindow.hide();
-      timerId = setTimeout(showLayout, LONGTIME);
-      onHide();
-    }
+  function takeBreak() {
+    mainWindow.show();
+    timerId = setTimeout(() => mainWindow.hide(), BREAKETIME);
+    onShow();
+  }
 
-    function showLayout() {
-      mainWindow.show();
-      timerId = setTimeout(hideLayout, BREAKETIME);
-      onShow();
-    }
+  function hideLayout() {
+    mainWindow.hide();
+    timerId = setTimeout(showLayout, LONGTIME);
+    onHide();
+  }
 
-    function skipBreak() {
-      clearTimeout(timerId);
-      hideLayout();
-    }
+  function showLayout() {
+    mainWindow.show();
+    timerId = setTimeout(hideLayout, BREAKETIME);
+    onShow();
+  }
 
-    globalShortcut.register('Alt+Control+Q', () => {
-      skipBreak();
-    });
+  function skipBreak() {
+    clearTimeout(timerId);
+    hideLayout();
+  }
 
-    setTimeout(showLayout, LONGTIME);
+  globalShortcut.register('Alt+Control+Q', () => {
+    skipBreak();
+  });
 
-    createTray({
-      takeBreak,
-      skipBreak,
-      relaunchApp,
-      closeApp,
-      addExercise,
-    });
+  setTimeout(showLayout, LONGTIME);
+
+  createTray({
+    takeBreak,
+    skipBreak,
+    relaunchApp,
+    closeApp,
+    addExercise,
+  });
 }
 
 module.exports = {

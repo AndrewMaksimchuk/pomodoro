@@ -1,10 +1,11 @@
 const { app } = require("electron");
-require("./constants");
-const { mainController } = require("./main_controller");
 
 app
   .whenReady()
-  .then(mainController)
+  .then(() => {
+    require("./constants").setOsConstants();
+    require("./main_controller").mainController();
+  })
   .catch((reason) => console.error(reason));
 
 app

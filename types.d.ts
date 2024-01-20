@@ -1,7 +1,22 @@
+interface Settings {
+  showExercises: boolean;
+  showExerciseOfDay: boolean;
+  exerciseOfDay: string | undefined;
+  soundVolume: number;
+}
+
+interface PageData {
+  value: 'show' | 'hide';
+  exercise: string | undefined;
+  volume: number;
+}
+
+type toggleCallback = (event: unknown, params: PageData) => unknown;
+
 interface IndexAPI {
   audioShow: string;
   audioHide: string;
-  toggle: function;
+  toggle: (toggleCallback: toggleCallback) => Electron.IpcRenderer;
 }
 
 interface Window {
@@ -9,17 +24,15 @@ interface Window {
 }
 
 interface MapAPI {
-  'indexAPI': IndexAPI;
+  indexAPI: IndexAPI;
 }
 
 declare namespace Electron {
   interface ContextBridge {
     exposeInMainWorld<T extends keyof MapAPI>(apiKey: T, api: MapAPI[T]): void;
   }
-}
 
-interface Settings {
-  showExercises: boolean;
-  showExerciseOfDay: boolean;
-  exerciseOfDay: string | undefined;
+  interface MenuItem {
+    position?: number;
+  }
 }

@@ -11,7 +11,10 @@ const toggleImages = () => {
 let isViewExercise = false;
 let isInBreak = false;
 
-window.indexAPI.toggle((event, {value, exercise}) => {
+window.indexAPI.toggle((event, {value, exercise, volume}) => {
+  audioShow.volume = volume;
+  audioHide.volume = volume;
+  
   if ('show' === value) {
     if (isInBreak) return;
     isInBreak = true;

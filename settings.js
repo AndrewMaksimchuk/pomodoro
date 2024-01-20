@@ -1,18 +1,19 @@
 const { writeFileSync, readFileSync, existsSync } = require("node:fs");
 const { join } = require("node:path");
-const { USER_DATA } = require("./constants");
+const { getUserData } = require("./constants");
 
 const DEFAULT_VALUES = {
   showExercises: false,
   showExerciseOfDay: false,
   exerciseOfDay: "",
+  soundVolume: 0.5, // Range 0..1
 }
-
 const SETTINGS_FILE = 'pomodoro_settings.json';
-const PATH_TO_SETTINGS = join(USER_DATA, SETTINGS_FILE);
+const PATH_TO_SETTINGS = join(getUserData(), SETTINGS_FILE);
 
 let showExercises = undefined;
 let showExerciseOfDay = undefined;
+let soundVolume = undefined;
 
 function createSettings() {
   if (existsSync(PATH_TO_SETTINGS)) return;
@@ -48,8 +49,12 @@ function getShowExercises() {
   return showExercises = getSettingProperty('showExercises');
 }
 
-function toggleShowExercises() {
-  setShowExercises(!showExercises);
+function toggleShowExercises(updateContextMenu) {
+  return (menuItem) => {
+    setShowExercises(!showExercises);
+    menuItem.checked = Boolean(showExercises);
+    updateContextMenu(menuItem.position, menuItem);
+  }
 }
 
 function setShowExerciseOfDay(newVal = false) {
@@ -61,8 +66,29 @@ function getShowExerciseOfDay() {
   return showExerciseOfDay = getSettingProperty('showExerciseOfDay');
 }
 
-function toggleShowExerciseOfDay() {
-  setShowExerciseOfDay(!showExerciseOfDay);
+function toggleShowExerciseOfDay(updateContextMenu) {
+  return (menuItem) => {
+    setShowExerciseOfDay(!showExerciseOfDay);
+    menuItem.checked = Boolean(showExerciseOfDay);
+    updateContextMenu(menuItem.position, menuItem);
+  }
+}
+
+function setSoundVolume(newVal) {
+  soundVolume = newVal;
+  setSettingProperty('soundVolume', soundVolume);
+}
+
+function getSoundVolumn() {
+  return soundVolume = getSettingProperty('soundVolume');
+}
+
+function toggleSoundVolume(updateContextMenu) {
+  return (menuItem) => {
+    Boolean(soundVolume) ? setSoundVolume(0) : setSoundVolume(0.5);
+    menuItem.checked = !Boolean(soundVolume);
+    updateContextMenu(menuItem.position, menuItem);
+  }
 }
 
 createSettings();
@@ -77,4 +103,6 @@ module.exports = {
   setShowExerciseOfDay,
   getShowExerciseOfDay,
   toggleShowExerciseOfDay,
+  getSoundVolumn,
+  toggleSoundVolume,
 }

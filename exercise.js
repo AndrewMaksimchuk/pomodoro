@@ -2,9 +2,9 @@ const { dialog } = require('electron');
 const { readdirSync, copyFile } = require("node:fs");
 const { join, basename } = require("node:path");
 const { showNotification } = require('./notification');
-const { USER_DATA } = require("./constants");
+const { getUserData } = require("./constants");
 
-const DIR_PATH = join(USER_DATA, 'exercises');
+const DIR_PATH = join(getUserData(), 'exercises');
 
 function getExercise() {
   const dirContent = readdirSync(DIR_PATH, { encoding: 'utf-8' });

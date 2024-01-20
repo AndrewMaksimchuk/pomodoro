@@ -3,9 +3,9 @@ const { join } = require('node:path');
 const { createWriteStream, existsSync } = require('node:fs');
 const cheerio = require('cheerio');
 const { getShowExerciseOfDay, setSettingProperty, getSettingProperty } = require('./settings')
-const { USER_DATA } = require("./constants");
+const { getUserData } = require("./constants");
 
-const DIRECTORY = join(USER_DATA, 'exercise_of_day')
+const DIRECTORY = join(getUserData(), 'exercise_of_day')
 const URL_SOURCE = 'https://www.darebee.com';
 
 const downloadExerciseOfDay = async () => {
