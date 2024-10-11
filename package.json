@@ -27,6 +27,10 @@
     "win32",
     "linux"
   ],
+  "engines": {
+    "node": "20.11.0",
+    "npm": "10.2.4"
+  },
   "dependencies": {
     "cheerio": "^1.0.0",
     "electron-squirrel-startup": "^1.0.1"
