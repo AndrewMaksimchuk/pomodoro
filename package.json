@@ -29,7 +29,6 @@
   ],
   "dependencies": {
     "cheerio": "^1.0.0",
-    "electron-forge": "^5.2.4",
     "electron-squirrel-startup": "^1.0.1"
   },
   "devDependencies": {
