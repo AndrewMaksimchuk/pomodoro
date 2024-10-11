@@ -23,7 +23,7 @@ No settings, just run and go :footprints:
 - Can add your custom exercise
 - Can show exercise of day from [darebee.com](https://www.darebee.com)
 - Show tray icon with number of minutes left to break
-
+- Play sound
 
 ## Commands:
 - Take a break - start new 5 minute break
@@ -54,3 +54,7 @@ run and build.
 
 This application save all user data for work() in  
 user data directory.  
+
+![](pomodoro_tray.png)  
+![](pomodoro_tray_counter.png)  
+![](pomodoro_tray_menu.png)  
