@@ -1,17 +1,12 @@
-const { iconNumbers } = require("./icons");
+import { iconNumbers } from "./icons.js";
 
 let counter = 0;
 
-function createCounterDown(start = 9) {
+export function createCounterDown(start = 9) {
   counter = start;
   return () => counter--;
 }
 
-function getCounterNumberImage(numberValue) {
+export function getCounterNumberImage(numberValue) {
   return iconNumbers[numberValue];
 }
-
-module.exports = {
-  createCounterDown,
-  getCounterNumberImage,
-};

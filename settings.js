@@ -1,6 +1,6 @@
-const { writeFileSync, readFileSync, existsSync } = require("node:fs");
-const { join } = require("node:path");
-const { getUserData } = require("./constants");
+import { writeFileSync, readFileSync, existsSync } from "node:fs";
+import { join } from "node:path";
+import { getUserData } from "./constants.js";
 
 const DEFAULT_VALUES = {
   showExercises: false,
@@ -97,7 +97,7 @@ function toggleSoundVolume(updateContextMenu) {
 
 createSettings();
 
-module.exports = {
+export {
   getSettingsProperties,
   setSettingProperty,
   getSettingProperty,

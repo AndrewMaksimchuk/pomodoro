@@ -4,6 +4,7 @@
   "description": "This simple program which will give you the opportunity to take a break and freshen up a bit.",
   "main": "main.js",
   "types": "types.d.ts",
+  "type": "module",
   "scripts": {
     "start": "electron-forge start --inspect-electron",
     "package": "electron-forge package",

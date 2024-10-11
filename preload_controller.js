@@ -1,9 +1,6 @@
-const { getSettingsProperties } = require("./settings");
-const { getExercise } = require("./exercise");
-const {
-  downloadExerciseOfDay,
-  getExerciseOfDay,
-} = require("./exercise_of_day");
+import { getSettingsProperties } from "./settings.js";
+import { getExercise } from "./exercise.js";
+import { downloadExerciseOfDay, getExerciseOfDay } from "./exercise_of_day.js";
 
 downloadExerciseOfDay();
 
@@ -13,13 +10,9 @@ const showBoth = () => {
   return arr[index];
 };
 
-const exercise = () => {
+export const exercise = () => {
   const { showExercises, showExerciseOfDay } = getSettingsProperties();
   if (showExerciseOfDay && showExercises) return showBoth();
   if (showExerciseOfDay) return getExerciseOfDay();
   if (showExercises) return getExercise();
-};
-
-module.exports = {
-  exercise,
 };

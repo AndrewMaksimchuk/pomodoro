@@ -1,13 +1,13 @@
-const { Menu, Tray } = require("electron");
-const { iconApp } = require("./icons");
-const {
+import { Menu, Tray } from "electron";
+import { iconApp } from "./icons.js";
+import {
   getShowExercises,
   toggleShowExercises,
   getShowExerciseOfDay,
   toggleShowExerciseOfDay,
   getSoundVolumn,
   toggleSoundVolume,
-} = require("./settings");
+} from "./settings.js";
 
 let tray, contextMenu;
 
@@ -64,14 +64,10 @@ function createContextMenu(actions) {
   ]);
 }
 
-function createTray(props = {}) {
+export function createTray(props = {}) {
   contextMenu = createContextMenu(props);
   tray = new Tray(iconApp);
   tray.setToolTip("POMODORO");
   tray.setContextMenu(contextMenu);
   return tray;
 }
-
-module.exports = {
-  createTray,
-};

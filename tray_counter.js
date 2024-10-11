@@ -1,16 +1,16 @@
-const { nativeImage } = require("electron");
-const { TRAYCOUNTER, ONEMINUTE } = require("./constants");
-const { iconApp } = require("./icons");
-const { createCounterDown, getCounterNumberImage } = require("./counter");
+import { nativeImage } from "electron";
+import { TRAYCOUNTER, ONEMINUTE } from "./constants.js";
+import { iconApp } from "./icons.js";
+import { createCounterDown, getCounterNumberImage } from "./counter.js";
 
 let intervalId;
 
-function trayCounterEnd(tray) {
+export function trayCounterEnd(tray) {
   clearInterval(intervalId);
   tray.setImage(nativeImage.createFromPath(iconApp));
 }
 
-function trayCounterStart(tray) {
+export function trayCounterStart(tray) {
   const counter = createCounterDown(TRAYCOUNTER);
   intervalId = setInterval(() => {
     const nextNumber = counter();
@@ -23,8 +23,3 @@ function trayCounterStart(tray) {
     tray.setImage(nativeImage.createFromPath(counterImage));
   }, ONEMINUTE);
 }
-
-module.exports = {
-  trayCounterStart,
-  trayCounterEnd,
-};

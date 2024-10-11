@@ -1,8 +1,8 @@
-const { dialog } = require("electron");
-const { readdirSync, copyFile } = require("node:fs");
-const { join, basename } = require("node:path");
-const { showNotification } = require("./notification");
-const { getUserData } = require("./constants");
+import { dialog } from "electron";
+import { readdirSync, copyFile } from "node:fs";
+import { join, basename } from "node:path";
+import { showNotification } from "./notification.js";
+import { getUserData } from "./constants.js";
 
 const DIR_PATH = join(getUserData(), "exercises");
 
@@ -36,7 +36,4 @@ function addExercise() {
     .catch((reason) => console.error(reason));
 }
 
-module.exports = {
-  getExercise,
-  addExercise,
-};
+export { getExercise, addExercise };

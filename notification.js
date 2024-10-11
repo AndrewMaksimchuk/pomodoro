@@ -1,6 +1,6 @@
-const { Notification } = require("electron");
+import { Notification } from "electron";
 
-function showNotification(title, body) {
+export function showNotification(title, body) {
   const notification = new Notification({
     title,
     body,
@@ -8,7 +8,3 @@ function showNotification(title, body) {
   notification.show();
   notification.on("show", () => notification.close());
 }
-
-module.exports = {
-  showNotification,
-};

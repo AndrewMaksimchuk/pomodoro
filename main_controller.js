@@ -1,18 +1,20 @@
-const { app, globalShortcut } = require("electron");
-const { LONGTIME, BREAKETIME, TRAYCOUNTERTIME } = require("./constants");
-const { getSoundVolumn } = require("./settings");
+import { app, globalShortcut } from "electron";
+import { LONGTIME, BREAKETIME, TRAYCOUNTERTIME } from "./constants.js";
+import { getSoundVolumn } from "./settings.js";
 
 let tray;
 let trayConterId;
 let timerId = setTimeout(() => {});
 
-function mainController() {
-  const { createWindow } = require("./window");
-  const { createTray } = require("./tray");
-  const { createDirectories } = require("./directory");
-  const { addExercise } = require("./exercise");
-  const { exercise } = require("./preload_controller");
-  const { trayCounterStart, trayCounterEnd } = require("./tray_counter");
+export async function mainController() {
+  const { createWindow } = await import("./window.js");
+  const { createTray } = await import("./tray.js");
+  const { createDirectories } = await import("./directory.js");
+  const { addExercise } = await import("./exercise.js");
+  const { exercise } = await import("./preload_controller.js");
+  const { trayCounterStart, trayCounterEnd } = await import(
+    "./tray_counter.js"
+  );
 
   createDirectories();
 
@@ -87,7 +89,3 @@ function mainController() {
   setTimeout(showLayout, LONGTIME);
   trayConterId = setTimeout(() => trayCounterStart(tray), TRAYCOUNTERTIME);
 }
-
-module.exports = {
-  mainController,
-};

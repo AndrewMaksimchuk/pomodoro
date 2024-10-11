@@ -1,10 +1,12 @@
-const { app } = require("electron");
+import { app } from "electron";
 
 app
   .whenReady()
-  .then(() => {
-    require("./constants").setOsConstants();
-    require("./main_controller").mainController();
+  .then(async () => {
+    const { setOsConstants } = await import("./constants.js");
+    setOsConstants();
+    const { mainController } = await import("./main_controller.js");
+    mainController();
   })
   .catch((reason) => console.error(reason));
 

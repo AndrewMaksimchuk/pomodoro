@@ -1,24 +1,24 @@
-const { get } = require("node:https");
-const { join } = require("node:path");
-const { createWriteStream, existsSync } = require("node:fs");
-const cheerio = require("cheerio");
-const {
+import { get } from "node:https";
+import { join } from "node:path";
+import { createWriteStream, existsSync } from "node:fs";
+import { load } from "cheerio";
+import {
   getShowExerciseOfDay,
   setSettingProperty,
   getSettingProperty,
-} = require("./settings");
-const { getUserData } = require("./constants");
+} from "./settings.js";
+import { getUserData } from "./constants.js";
 
 const DIRECTORY = join(getUserData(), "exercise_of_day");
 const URL_SOURCE = "https://www.darebee.com";
 
-const downloadExerciseOfDay = async () => {
+export const downloadExerciseOfDay = async () => {
   if (getShowExerciseOfDay() === false) return;
 
   try {
     const res = await fetch(URL_SOURCE);
     const data = await res.text();
-    const $ = cheerio.load(data);
+    const $ = load(data);
     const urlWithName = $("#exercise").find("img").attr("src") ?? "";
     const name = urlWithName.split("/").at(-1);
 
@@ -40,12 +40,7 @@ const downloadExerciseOfDay = async () => {
   }
 };
 
-const getExerciseOfDay = () => {
+export const getExerciseOfDay = () => {
   const file = join(DIRECTORY, getSettingProperty("exerciseOfDay"));
   return existsSync(file) ? file : undefined;
-};
-
-module.exports = {
-  downloadExerciseOfDay,
-  getExerciseOfDay,
 };

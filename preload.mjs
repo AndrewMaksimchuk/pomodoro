@@ -5,7 +5,7 @@ const toggle = (callback) => {
 };
 
 contextBridge.exposeInMainWorld("indexAPI", {
-  audioShow: __dirname + "/sound/sunrise.mp3",
-  audioHide: __dirname + "/sound/hide.mp3",
+  audioShow: import.meta.dirname + "/sound/sunrise.mp3",
+  audioHide: import.meta.dirname + "/sound/hide.mp3",
   toggle,
 });
