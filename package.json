@@ -10,7 +10,8 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "format-check": "prettier --check .",
-    "format-write": "prettier --write ."
+    "format-write": "prettier --write .",
+    "ts-compile": "tsc"
   },
   "keywords": [
     "Pomodoro",
