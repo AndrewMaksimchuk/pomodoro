@@ -1,8 +1,10 @@
 const { app, globalShortcut } = require("electron");
-const { LONGTIME, BREAKETIME } = require("./constants");
+const { LONGTIME, BREAKETIME, TRAYCOUNTERTIME } = require("./constants");
 const { getSoundVolumn } = require("./settings");
 
-let timerId = setTimeout(() => {});
+let tray;
+let trayConterId;
+let timerId = setTimeout(() => { });
 
 function mainController() {
   const { createWindow } = require("./window");
@@ -10,6 +12,7 @@ function mainController() {
   const { createDirectories } = require("./directory");
   const { addExercise } = require("./exercise");
   const { exercise } = require("./preload_controller");
+  const { trayCounterStart, trayCounterEnd } = require("./tray_counter");
 
   createDirectories();
 
@@ -43,6 +46,7 @@ function mainController() {
   }
 
   function takeBreak() {
+    trayCounterEnd(tray);
     mainWindow.show();
     timerId = setTimeout(() => mainWindow.hide(), BREAKETIME);
     onShow();
@@ -50,18 +54,21 @@ function mainController() {
 
   function hideLayout() {
     mainWindow.hide();
+    trayConterId = setTimeout(() => trayCounterStart(tray), TRAYCOUNTERTIME);
     timerId = setTimeout(showLayout, LONGTIME);
     onHide();
   }
 
   function showLayout() {
     mainWindow.show();
+    trayCounterEnd(tray);
     timerId = setTimeout(hideLayout, BREAKETIME);
     onShow();
   }
 
   function skipBreak() {
     clearTimeout(timerId);
+    clearTimeout(trayConterId);
     hideLayout();
   }
 
@@ -69,15 +76,16 @@ function mainController() {
     skipBreak();
   });
 
-  setTimeout(showLayout, LONGTIME);
-
-  createTray({
+  tray = createTray({
     takeBreak,
     skipBreak,
     relaunchApp,
     closeApp,
     addExercise,
   });
+
+  setTimeout(showLayout, LONGTIME);
+  trayConterId = setTimeout(() => trayCounterStart(tray), TRAYCOUNTERTIME);
 }
 
 module.exports = {

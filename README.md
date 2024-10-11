@@ -18,6 +18,13 @@ To run the program you need:
 No settings, just run and go :footprints:  
 ![](pomodoro.jpg)  
 
+## Features
+- Can show exercise on break time
+- Can add your custom exercise
+- Can show exercise of day from [darebee.com](https://www.darebee.com)
+- Show tray icon with number of minutes left to break
+
+
 ## Commands:
 - Take a break - start new 5 minute break
 - Skip         - skip break
