@@ -4,7 +4,7 @@ export const LONGTIME = ONEMINUTE * 25;
 export const BREAKETIME = ONEMINUTE * 5;
 export const TRAYCOUNTER = 5;
 export const TRAYCOUNTERTIME = LONGTIME - ONEMINUTE * (TRAYCOUNTER + 1);
-let USER_DATA = undefined;
+let USER_DATA = "";
 export function setOsConstants() {
     USER_DATA = app.getPath("userData");
 }

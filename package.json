@@ -11,6 +11,7 @@
     "make": "electron-forge make",
     "format-check": "prettier --check .",
     "format-write": "prettier --write .",
+    "ts-check": "tsc --noEmit",
     "ts-compile": "tsc"
   },
   "keywords": [
