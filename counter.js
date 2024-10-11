@@ -1,4 +1,4 @@
-const { iconNumbers } = require("./icons")
+const { iconNumbers } = require("./icons");
 
 let counter = 0;
 
@@ -14,4 +14,4 @@ function getCounterNumberImage(numberValue) {
 module.exports = {
   createCounterDown,
   getCounterNumberImage,
-}
+};

@@ -4,7 +4,7 @@ const { getSoundVolumn } = require("./settings");
 
 let tray;
 let trayConterId;
-let timerId = setTimeout(() => { });
+let timerId = setTimeout(() => {});
 
 function mainController() {
   const { createWindow } = require("./window");

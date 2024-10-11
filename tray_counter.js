@@ -11,20 +11,20 @@ function trayCounterEnd(tray) {
 }
 
 function trayCounterStart(tray) {
-  const counter = createCounterDown(TRAYCOUNTER)
+  const counter = createCounterDown(TRAYCOUNTER);
   intervalId = setInterval(() => {
-    const nextNumber = counter()
+    const nextNumber = counter();
 
     if (0 === nextNumber) {
       return trayCounterEnd(tray);
     }
 
-    const counterImage = getCounterNumberImage(nextNumber)
-    tray.setImage(nativeImage.createFromPath(counterImage))
-  }, ONEMINUTE)
+    const counterImage = getCounterNumberImage(nextNumber);
+    tray.setImage(nativeImage.createFromPath(counterImage));
+  }, ONEMINUTE);
 }
 
 module.exports = {
   trayCounterStart,
   trayCounterEnd,
-}
+};
