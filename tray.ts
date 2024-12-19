@@ -12,11 +12,11 @@ import {
 let tray: Tray, contextMenu: Menu;
 
 const defaultClickAction = {
-  takeBreak: () => { },
-  skipBreak: () => { },
-  relaunchApp: () => { },
-  closeApp: () => { },
-  addExercise: () => { },
+  takeBreak: () => {},
+  skipBreak: () => {},
+  relaunchApp: () => {},
+  closeApp: () => {},
+  addExercise: () => {},
 };
 
 function updateTray(newContextMenu: Menu) {
@@ -35,18 +35,22 @@ function updateContextMenu(position: number | undefined, menuItem: MenuItem) {
 export type UpdateContextMenuFn = typeof updateContextMenu;
 
 interface ContextMenuActions {
-  takeBreak: () => void
-  skipBreak: () => void
-  relaunchApp: () => void
-  closeApp: () => void
-  addExercise: () => void
+  takeBreak: () => void;
+  skipBreak: () => void;
+  relaunchApp: () => void;
+  closeApp: () => void;
+  addExercise: () => void;
 }
 
 function createContextMenu(actions: ContextMenuActions) {
   const todo = { ...defaultClickAction, ...actions };
   return Menu.buildFromTemplate([
     { label: "Take a break", type: "normal", click: todo.takeBreak },
-    { label: "Skip", type: "normal", click: todo.skipBreak },
+    {
+      label: "Skip                     Ctrl+Alt+Q",
+      type: "normal",
+      click: todo.skipBreak,
+    },
 
     { type: "separator" },
     { label: "Add exercise", type: "normal", click: todo.addExercise },
