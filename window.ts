@@ -1,10 +1,12 @@
 import { BrowserWindow } from "electron";
 import { join } from "node:path";
 import { iconApp } from "./icons.js";
+import { historyApplicationEvent } from "./history.js";
 
 const isDevToolsEnable = process.env.POMODORO_DEV;
 
 export function createWindow() {
+  historyApplicationEvent("createWindow");
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,

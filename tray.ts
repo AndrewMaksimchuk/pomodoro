@@ -8,6 +8,18 @@ import {
   getSoundVolumn,
   toggleSoundVolume,
 } from "./settings.js";
+import { historyUserEvent } from "./history.js";
+
+function actionWithHistry(
+  action: (arg0?: any) => void,
+  event: string,
+  message?: string,
+) {
+  return () => {
+    historyUserEvent(event, message);
+    action();
+  };
+}
 
 let tray: Tray, contextMenu: Menu;
 
@@ -45,28 +57,42 @@ interface ContextMenuActions {
 function createContextMenu(actions: ContextMenuActions) {
   const todo = { ...defaultClickAction, ...actions };
   return Menu.buildFromTemplate([
-    { label: "Take a break", type: "normal", click: todo.takeBreak },
+    {
+      label: "Take a break",
+      type: "normal",
+      click: actionWithHistry(todo.takeBreak, "take a break"),
+    },
     {
       label: "Skip                     Ctrl+Alt+Q",
       type: "normal",
-      click: todo.skipBreak,
+      click: actionWithHistry(todo.skipBreak, "skip"),
     },
 
     { type: "separator" },
-    { label: "Add exercise", type: "normal", click: todo.addExercise },
+    {
+      label: "Add exercise",
+      type: "normal",
+      click: actionWithHistry(todo.addExercise, "add exercises"),
+    },
     {
       position: 4,
       label: "Show exercises",
       type: "checkbox",
       checked: getShowExercises(),
-      click: toggleShowExercises(updateContextMenu),
+      click: actionWithHistry(
+        toggleShowExercises(updateContextMenu),
+        "show exercises",
+      ),
     },
     {
       position: 5,
       label: "Show exercise of the day",
       type: "checkbox",
       checked: getShowExerciseOfDay(),
-      click: toggleShowExerciseOfDay(updateContextMenu),
+      click: actionWithHistry(
+        toggleShowExerciseOfDay(updateContextMenu),
+        "show exercise of the day",
+      ),
     },
 
     { type: "separator" },

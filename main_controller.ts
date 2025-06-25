@@ -2,10 +2,11 @@ import type { Tray } from "electron/main";
 import { app, globalShortcut } from "electron";
 import { LONGTIME, BREAKETIME, TRAYCOUNTERTIME } from "./constants.js";
 import { getSoundVolumn } from "./settings.js";
+import { historyApplicationEvent, historyUserEvent } from "./history.js";
 
 let tray: Tray;
 let trayConterId: NodeJS.Timeout;
-let timerId = setTimeout(() => { });
+let timerId = setTimeout(() => {});
 
 export async function mainController() {
   const { createWindow } = await import("./window.js");
@@ -18,10 +19,10 @@ export async function mainController() {
   );
 
   createDirectories();
-
   const mainWindow = createWindow();
 
   const onShow = () => {
+    historyApplicationEvent("onShow");
     const pageData = {
       value: "show",
       exercise: exercise(),
@@ -31,6 +32,7 @@ export async function mainController() {
   };
 
   const onHide = () => {
+    historyApplicationEvent("onHide");
     const pageData = {
       value: "hide",
       exercise: "",
@@ -40,15 +42,18 @@ export async function mainController() {
   };
 
   function closeApp() {
+    historyApplicationEvent("closeApp");
     app.quit();
   }
 
   function relaunchApp() {
+    historyApplicationEvent("relaunchApp");
     app.relaunch();
     app.quit();
   }
 
   function takeBreak() {
+    historyApplicationEvent("takeBreak");
     trayCounterEnd(tray);
     mainWindow.show();
     timerId = setTimeout(() => mainWindow.hide(), BREAKETIME);
@@ -56,6 +61,7 @@ export async function mainController() {
   }
 
   function hideLayout() {
+    historyApplicationEvent("hideLaouyt");
     mainWindow.hide();
     trayConterId = setTimeout(() => trayCounterStart(tray), TRAYCOUNTERTIME);
     timerId = setTimeout(showLayout, LONGTIME);
@@ -63,6 +69,7 @@ export async function mainController() {
   }
 
   function showLayout() {
+    historyApplicationEvent("showLayout");
     mainWindow.show();
     trayCounterEnd(tray);
     timerId = setTimeout(hideLayout, BREAKETIME);
@@ -70,12 +77,14 @@ export async function mainController() {
   }
 
   function skipBreak() {
+    historyApplicationEvent("skipBreak");
     clearTimeout(timerId);
     clearTimeout(trayConterId);
     hideLayout();
   }
 
   globalShortcut.register("Alt+Control+Q", () => {
+    historyUserEvent("skip");
     skipBreak();
   });
 

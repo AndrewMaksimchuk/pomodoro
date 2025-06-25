@@ -1,7 +1,7 @@
+import type { UpdateContextMenuFn } from "./tray.js";
 import { writeFileSync, readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { getUserData } from "./constants.js";
-import { UpdateContextMenuFn } from "./tray.js";
 import { MenuItem } from "electron";
 
 const DEFAULT_VALUES = {
@@ -13,8 +13,9 @@ const DEFAULT_VALUES = {
 const SETTINGS_FILE = "pomodoro_settings.json";
 const PATH_TO_SETTINGS = join(getUserData(), SETTINGS_FILE);
 
-export type SettingsKey = keyof typeof DEFAULT_VALUES
-export type SettingsKeyValue = typeof DEFAULT_VALUES[keyof typeof DEFAULT_VALUES]
+export type SettingsKey = keyof typeof DEFAULT_VALUES;
+export type SettingsKeyValue =
+  (typeof DEFAULT_VALUES)[keyof typeof DEFAULT_VALUES];
 
 let showExercises = false;
 let showExerciseOfDay = false;
