@@ -4,7 +4,10 @@ import { writeFile } from "node:fs";
 
 const HISTORY_FILE_NAME_USER = "pomodoro_history_user";
 const HISTORY_FILE_NAME_APPLICATION = "pomodoro_history_application";
-const PATH_TO_HISTORY_FILE_USER = join(getUserData(), HISTORY_FILE_NAME_USER);
+export const PATH_TO_HISTORY_FILE_USER = join(
+  getUserData(),
+  HISTORY_FILE_NAME_USER,
+);
 const PATH_TO_HISTORY_FILE_APPLICATION = join(
   getUserData(),
   HISTORY_FILE_NAME_APPLICATION,
@@ -58,4 +61,8 @@ export function historyUserEvent(event: string, message?: string) {
     { flag: "a" },
     () => (historyApplicationLock = false),
   );
+}
+
+export function historyShowPage() {
+  console.log("show history page");
 }

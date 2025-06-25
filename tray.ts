@@ -8,7 +8,7 @@ import {
   getSoundVolumn,
   toggleSoundVolume,
 } from "./settings.js";
-import { historyUserEvent } from "./history.js";
+import { historyShowPage, historyUserEvent } from "./history.js";
 
 function actionWithHistry(
   action: (arg0?: any) => void,
@@ -93,6 +93,11 @@ function createContextMenu(actions: ContextMenuActions) {
         toggleShowExerciseOfDay(updateContextMenu),
         "show exercise of the day",
       ),
+    },
+    {
+      label: "Show history",
+      type: "normal",
+      click: actionWithHistry(historyShowPage, "show history"),
     },
 
     { type: "separator" },
