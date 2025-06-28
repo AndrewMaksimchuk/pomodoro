@@ -1,4 +1,4 @@
-import { HistoryItem } from "./history.ts";
+import type { HistoryItem } from "./history.ts";
 
 interface Settings {
   showExercises: boolean;
@@ -28,21 +28,26 @@ export interface HistoryAPI {
   ) => Electron.IpcRenderer;
 }
 
-interface Window {
-  indexAPI: IndexAPI;
-  historyAPI: HistoryAPI;
-}
-
 interface MapAPI {
   indexAPI: IndexAPI;
 }
 
-declare namespace Electron {
-  interface ContextBridge {
-    exposeInMainWorld<T extends keyof MapAPI>(apiKey: T, api: MapAPI[T]): void;
+declare global {
+  interface Window {
+    indexAPI: IndexAPI;
+    historyAPI: HistoryAPI;
   }
 
-  interface MenuItem {
-    position?: number;
+  declare namespace Electron {
+    interface ContextBridge {
+      exposeInMainWorld<T extends keyof MapAPI>(
+        apiKey: T,
+        api: MapAPI[T],
+      ): void;
+    }
+
+    interface MenuItem {
+      position?: number;
+    }
   }
 }
