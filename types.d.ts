@@ -1,3 +1,5 @@
+import { HistoryItem } from "./history.ts";
+
 interface Settings {
   showExercises: boolean;
   showExerciseOfDay: boolean;
@@ -19,8 +21,16 @@ interface IndexAPI {
   toggle: (toggleCallback: toggleCallback) => Electron.IpcRenderer;
 }
 
+export interface HistoryAPI {
+  getData: () => void;
+  onHistorySendData: (
+    callback: (args: HistoryItem[]) => void,
+  ) => Electron.IpcRenderer;
+}
+
 interface Window {
   indexAPI: IndexAPI;
+  historyAPI: HistoryAPI;
 }
 
 interface MapAPI {
