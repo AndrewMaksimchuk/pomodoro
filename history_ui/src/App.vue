@@ -4,8 +4,8 @@ import { ElContainer, ElHeader, ElMain, ElPagination, ElTable, ElTableColumn } f
 import { ref, onMounted, computed, watch, onUnmounted } from 'vue'
 
 const data = ref<HistoryItem[]>([])
-const pageSize = ref(15)
-const pageSizes = [15, 30, 50, 100]
+const pageSize = ref(20)
+const pageSizes = [10, 15, 20, 30, 50, 100]
 const pageCurrent = ref(1)
 const maxHeight = ref(800)
 const scale = 0.8
@@ -33,6 +33,7 @@ function onWindowResize() {
 }
 
 watch(() => window.innerHeight, computeTableMaxHeight)
+watch(pageSize, onWindowResize)
 
 onMounted(() => {
   window?.historyAPI?.onHistorySendData(setData)
