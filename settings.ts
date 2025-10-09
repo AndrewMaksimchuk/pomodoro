@@ -3,10 +3,12 @@ import { writeFileSync, readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { getUserData } from "./constants.js";
 import { MenuItem } from "electron";
+import { toggleService } from "./run_with_os.js";
 
 const DEFAULT_VALUES = {
   showExercises: false,
   showExerciseOfDay: false,
+  startWithOs: false,
   exerciseOfDay: "",
   soundVolume: 0.5, // Range 0..1
 };
@@ -20,6 +22,7 @@ export type SettingsKeyValue =
 let showExercises = false;
 let showExerciseOfDay = false;
 let soundVolume = 0.5;
+let startWithOs = false;
 
 function createSettings() {
   if (existsSync(PATH_TO_SETTINGS)) return;
@@ -101,6 +104,24 @@ function toggleSoundVolume(updateContextMenu: UpdateContextMenuFn) {
   };
 }
 
+function getStartWithOs() {
+  return (startWithOs = getSettingProperty("startWithOs"))
+}
+
+function setStartWithOs(newVal: boolean) {
+  startWithOs = newVal;
+  setSettingProperty("startWithOs", startWithOs);
+}
+
+function toggleStartWithOs(updateContextMenu: UpdateContextMenuFn) {
+  return (menuItem: MenuItem) => {
+    startWithOs ? setStartWithOs(false) : setStartWithOs(true);
+    menuItem.checked = startWithOs;
+    updateContextMenu(menuItem.position, menuItem);
+    toggleService(startWithOs);
+  };
+}
+
 createSettings();
 
 export {
@@ -115,4 +136,6 @@ export {
   toggleShowExerciseOfDay,
   getSoundVolumn,
   toggleSoundVolume,
+  getStartWithOs,
+  toggleStartWithOs,
 };

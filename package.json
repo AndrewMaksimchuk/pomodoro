@@ -6,7 +6,7 @@
   "types": "types.d.ts",
   "type": "module",
   "scripts": {
-    "prestart": "npm run clean && npm run ts-compile",
+    "prestart": "npm run ts-compile",
     "start": "electron-forge start --inspect-electron",
     "package": "electron-forge package",
     "premake": "npm run clean && npm run ts-compile",
@@ -14,8 +14,7 @@
     "format-check": "prettier --check .",
     "format-write": "prettier --write .",
     "ts-check": "tsc --noEmit",
-    "ts-compile": "tsc",
-    "clean": "rm -f *.js"
+    "ts-compile": "tsc"
   },
   "keywords": [
     "Pomodoro",

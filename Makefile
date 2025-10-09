@@ -21,5 +21,5 @@ update: remove install
 update-dev: remove build install
 
 setup:
-  nvm install
-  npm install
+	nvm install
+	npm install

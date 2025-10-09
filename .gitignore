@@ -4,4 +4,5 @@ exercises/
 exercise_of_day/
 
 release_note
+tsconfig.tsbuildinfo
 *.js

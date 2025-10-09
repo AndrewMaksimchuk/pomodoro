@@ -7,6 +7,8 @@ import {
   toggleShowExerciseOfDay,
   getSoundVolumn,
   toggleSoundVolume,
+  getStartWithOs,
+  toggleStartWithOs,
 } from "./settings.js";
 import { historyShowPage, historyUserEvent } from "./history.js";
 
@@ -54,28 +56,37 @@ interface ContextMenuActions {
   addExercise: () => void;
 }
 
+function isLinux() {
+  return process.platform === "linux";
+}
+
+let position = 0;
+
 function createContextMenu(actions: ContextMenuActions) {
   const todo = { ...defaultClickAction, ...actions };
   return Menu.buildFromTemplate([
     {
+      position: position++,
       label: "Take a break",
       type: "normal",
       click: actionWithHistry(todo.takeBreak, "take a break"),
     },
     {
+      position: position++,
       label: "Skip                     Ctrl+Alt+Q",
       type: "normal",
       click: actionWithHistry(todo.skipBreak, "skip"),
     },
 
-    { type: "separator" },
+    { position: position++, type: "separator" },
     {
+      position: position++,
       label: "Add exercise",
       type: "normal",
       click: actionWithHistry(todo.addExercise, "add exercises"),
     },
     {
-      position: 4,
+      position: position++,
       label: "Show exercises",
       type: "checkbox",
       checked: getShowExercises(),
@@ -85,7 +96,7 @@ function createContextMenu(actions: ContextMenuActions) {
       ),
     },
     {
-      position: 5,
+      position: position++,
       label: "Show exercise of the day",
       type: "checkbox",
       checked: getShowExerciseOfDay(),
@@ -95,21 +106,40 @@ function createContextMenu(actions: ContextMenuActions) {
       ),
     },
     {
+      position: position++,
       label: "Show history",
       type: "normal",
       click: actionWithHistry(historyShowPage, "show history"),
     },
 
-    { type: "separator" },
+    { position: position++, type: "separator" },
     {
-      position: 7,
+      position: position++,
       label: "Mute sound",
       type: "checkbox",
       checked: !Boolean(getSoundVolumn()),
       click: toggleSoundVolume(updateContextMenu),
     },
-    { label: "Relaunch", type: "normal", click: todo.relaunchApp },
-    { label: "Exit", type: "normal", click: todo.closeApp },
+    {
+      position: position++,
+      label: "Start with OS",
+      type: "checkbox",
+      checked: getStartWithOs(),
+      click: toggleStartWithOs(updateContextMenu),
+      visible: isLinux(),
+    },
+    {
+      position: position++,
+      label: "Relaunch",
+      type: "normal",
+      click: todo.relaunchApp,
+    },
+    {
+      position: position++,
+      label: "Exit",
+      type: "normal",
+      click: todo.closeApp,
+    },
   ]);
 }
 

@@ -26,11 +26,12 @@ No settings, just run and go :footprints:
 - Play sound
 
 ## Commands:
-- Take a break - start new 5 minute break
-- Skip         - skip break
-- Add exercise - add a sports exercise
-- Relaunch     - restart the entire program
-- Exit         - close this application  
+- Take a break  - start new 5 minute break
+- Skip          - skip break
+- Add exercise  - add a sports exercise
+- Relaunch      - restart the entire program
+- Start with OS - run application when OS start(Linux Ubuntu)
+- Exit          - close this application  
 
 ## Settings
 - Show exercises - if checked, show on break time  

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Pomodoro timer
+Exec=pomodoro
+Type=Application
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
